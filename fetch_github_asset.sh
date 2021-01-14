@@ -31,15 +31,11 @@ if [[ -z "$ASSET_ID" ]]; then
   exit 1
 fi
 
-echo "$API_URL/releases/assets/$ASSET_ID"
-pwd
-ls -la
-
 curl \
   -J \
   -L \
   -H "Accept: application/octet-stream" \
   "$API_URL/releases/assets/$ASSET_ID" \
-  -o /github/workspace/${INPUT_FILE}
+  -o ${INPUT_FILE}
 
 echo "::set-output name=version::$TAG_VERSION"
